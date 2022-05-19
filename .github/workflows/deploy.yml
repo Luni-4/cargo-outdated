@@ -73,6 +73,11 @@ jobs:
         target: ${{ matrix.target }}
         override: true
 
+    - name: Install openssl
+      if: contains(matrix.target, 'linux-musl')
+      run: |
+        sudo apt-get install libssl-dev
+
     - name: Install musl
       if: contains(matrix.target, 'linux-musl')
       run: |
